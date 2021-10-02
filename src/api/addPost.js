@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getToken } from "../auth";
 
-const AddPost = async (url, title, description, price) => {
+const addPost = async (url, title, description, price) => {
   const token = getToken();
 
   try {
@@ -28,4 +28,4 @@ const AddPost = async (url, title, description, price) => {
   }
 };
 
-export default AddPost;
+export default addPost;

@@ -7,9 +7,9 @@ import Login from "./Login";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
-  const [title, setTitle] = useState('')
-  const [description, setDescription]=useState('')
-  const [price, setPrice] = useState('')
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -36,6 +36,18 @@ const App = () => {
       <Header isLoggedIn={isLoggedIn} setIsloggedIn={setIsLoggedIn} />
       <div className="main">
         <Switch>
+        <Route exact path="/addPost">
+            <AddPost
+              posts={posts}
+              setPosts={setPosts}
+              title={title}
+              setTitle={setTitle}
+              description={description}
+              setDescription={setDescription}
+              price={price}
+              setPrice={setPrice}
+            />
+          </Route>
           <Route exact path="/">
             <div>
               <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -55,9 +67,7 @@ const App = () => {
           <Route exact path="/posts/:postId">
             <PostView posts={posts} />
           </Route>
-          <Route>
-            <AddPost posts={posts} title={title} setTitle={setTitle} description={description} setDescription={setDescription} price={price}  />
-          </Route>
+          
         </Switch>
       </div>
       <Footer />
