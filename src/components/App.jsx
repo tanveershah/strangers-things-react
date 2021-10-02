@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import { Header, Footer, Posts, Register, Search, PostView } from ".";
+import { Header, Footer, Posts, Register, Search, PostView, AddPost } from ".";
 import { getPosts, BASE_URL } from "../api";
 import "./App.css";
 import Login from "./Login";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
+  const [title, setTitle] = useState('')
+  const [description, setDescription]=useState('')
+  const [price, setPrice] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -51,6 +54,9 @@ const App = () => {
           </Route>
           <Route exact path="/posts/:postId">
             <PostView posts={posts} />
+          </Route>
+          <Route>
+            <AddPost posts={posts} title={title} setTitle={setTitle} description={description} setDescription={setDescription} price={price}  />
           </Route>
         </Switch>
       </div>

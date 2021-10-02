@@ -12,8 +12,13 @@
 .nav-links a {
   text-decoration: none;
   color: white;
+  margin-left: 3em;
+}
+
+.nav-links button {
   margin-left: 2em;
 }
+
 
 .active {
   border-bottom: white 1px solid;
