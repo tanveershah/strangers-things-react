@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import { BASE_URL, registerUser } from "../api";
 import { storeToken } from "../auth";
 
-const Register = ({setIsLoggedIn}) => {
+const Register = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-const history = useHistory()
+  const history = useHistory();
 
   return (
     <div className="register">
@@ -15,11 +15,11 @@ const history = useHistory()
       <form
         className="register-form"
         onSubmit={async (event) => {
-            event.preventDefault()
-            const {data} = await registerUser(BASE_URL, username, password)
-            storeToken(data.token)
-            if(data.token) setIsLoggedIn(true)
-            history.push('/')
+          event.preventDefault();
+          const { data } = await registerUser(BASE_URL, username, password);
+          storeToken(data.token);
+          if (data.token) setIsLoggedIn(true);
+          history.push("/");
         }}
       >
         <fieldset>

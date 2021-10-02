@@ -3,8 +3,8 @@ import { NavLink, useHistory } from "react-router-dom";
 import { removeToken } from "../auth";
 import "./Header.css";
 
-const Header = ({isLoggedIn, setIsloggedIn}) => {
-  const history = useHistory()
+const Header = ({ isLoggedIn, setIsloggedIn }) => {
+  const history = useHistory();
   return (
     <div className="header">
       <div className="logo">
@@ -14,14 +14,21 @@ const Header = ({isLoggedIn, setIsloggedIn}) => {
         <NavLink exact to="/" activeClassName="active">
           Home
         </NavLink>
-        {isLoggedIn?<button onClick={(event)=>{
-          removeToken()
-          setIsloggedIn(false )
-          history.push('/login')
-        }}>Logout</button>:
-        <NavLink exact to="/login" activeClassName="active">
-          Login
-        </NavLink>}
+        {isLoggedIn ? (
+          <button
+            onClick={(event) => {
+              removeToken();
+              setIsloggedIn(false);
+              history.push("/login");
+            }}
+          >
+            Logout
+          </button>
+        ) : (
+          <NavLink exact to="/login" activeClassName="active">
+            Login
+          </NavLink>
+        )}
       </div>
     </div>
   );

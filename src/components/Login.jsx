@@ -3,11 +3,11 @@ import { Link, useHistory } from "react-router-dom";
 import { BASE_URL, loginUser } from "../api";
 import { storeToken } from "../auth";
 
-const Login = ({setIsLoggedIn}) => {
-const [username, setUsername]=useState('')
-const [password, setPassword]=useState('')
+const Login = ({ setIsLoggedIn }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-const history=useHistory()
+  const history = useHistory();
 
   return (
     <div className="login">
@@ -15,14 +15,14 @@ const history=useHistory()
       <form
         className="login-form"
         onSubmit={async (event) => {
-            event.preventDefault()
-            const {data} = await loginUser(BASE_URL, username, password)
-            console.log(data, "data")
-            storeToken(data.token)
-            setIsLoggedIn(true)
-            setUsername('')
-            setPassword('')
-            history.push('/profile')
+          event.preventDefault();
+          const { data } = await loginUser(BASE_URL, username, password);
+          console.log(data, "data");
+          storeToken(data.token);
+          setIsLoggedIn(true);
+          setUsername("");
+          setPassword("");
+          history.push("/profile");
         }}
       >
         <fieldset>
@@ -49,7 +49,7 @@ const history=useHistory()
         </fieldset>
         <button type="submit">Login</button>
 
-        <Link to='/register'>Click to register</Link>
+        <Link to="/register">Click to register</Link>
       </form>
     </div>
   );

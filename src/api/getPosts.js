@@ -2,13 +2,13 @@ import axios from "axios";
 import { getToken } from "../auth";
 
 const getPosts = async (url) => {
-const token = getToken()
+  const token = getToken();
 
   try {
     const { data } = await axios.get(`${url}/posts`, {
       headers: {
-        "auth-token": token
-      }
+        "auth-token": token,
+      },
     });
     return data;
   } catch (error) {
@@ -16,4 +16,4 @@ const token = getToken()
   }
 };
 
-export default getPosts
+export default getPosts;
