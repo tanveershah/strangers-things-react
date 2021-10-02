@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { BASE_URL, deletePost, getUser, sendMessage } from "../api";
+import { BASE_URL, deletePost, editPost, getUser, sendMessage } from "../api";
 
 const PostView = ({
   posts,
+  setPosts,
   title,
   setTitle,
   description,
@@ -67,6 +68,21 @@ const PostView = ({
               deletePost(BASE_URL, postId)
               history.push('/')
           }}>Delete</button>
+          <form id='edit'
+          onSubmit={async event=>{
+              event.preventDefault()
+              try {
+                  const {data}=await editPost(BASE_URL, title, description, price, postId)
+                  setPosts([...posts, data.post])
+              } catch (error) {
+                  console.error(error.message)
+              } finally {
+                  history.push('/profile')
+              }
+          }}
+          >
+
+          </form>
       </>:null}
     </>
   );
