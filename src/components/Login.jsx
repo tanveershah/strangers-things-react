@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { BASE_URL, loginUser } from "../api";
-import { getToken, storeToken } from "../auth";
+import {storeToken } from "../auth";
 
 const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -17,7 +17,6 @@ const Login = ({ setIsLoggedIn }) => {
         onSubmit={async (event) => {
           event.preventDefault();
           const { data } = await loginUser(BASE_URL, username, password);
-          console.log(data, "data");
           storeToken(data.token);
           setIsLoggedIn(true);
           setUsername("");

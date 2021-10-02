@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const SinglePost = ({ post }) => {
   return (
     <>
-      <Link to={`/posts/${post._id}`}>
+      {post?<Link to={`/posts/${post._id}`}>
         <h2>{post.title}</h2>
-      </Link>
+      </Link>:null}
 
       <p>{post.description}</p>
     </>

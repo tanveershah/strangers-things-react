@@ -64,7 +64,7 @@ const App = () => {
             <Login setIsLoggedIn={setIsLoggedIn} />
           </Route>
           <Route exact path="/posts/:postId">
-            <PostView posts={posts} />
+            <PostView posts={posts} setPosts={setPosts} title={setTitle} description={setDescription} price={price} setPrice={setPrice} />
           </Route>
           <Route path='/profile'>
             <Profile />
