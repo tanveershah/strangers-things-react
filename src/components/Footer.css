@@ -1,0 +1,9 @@
+.footer {
+  grid-row: 3;
+  color: white;
+  background: hsl(var(--hue), var(--saturation), var(--lightness));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
