@@ -20,6 +20,10 @@ const Header = ({ isLoggedIn, setIsloggedIn }) => {
               Add Post
             </NavLink>
 
+            <NavLink activeClassName="active" exact to="/profile">
+              Profile
+            </NavLink>
+
             <button
               onClick={(event) => {
                 removeToken();

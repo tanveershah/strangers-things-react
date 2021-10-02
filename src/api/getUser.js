@@ -5,7 +5,7 @@ const getUser = async (url) => {
   const token = getToken();
 
   try {
-    const { data } = await axios.post(
+    const { data } = await axios.get(
       `${url}/users/me`,
       {
         headers: {

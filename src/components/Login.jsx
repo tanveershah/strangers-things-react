@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { BASE_URL, loginUser } from "../api";
-import { storeToken } from "../auth";
+import { getToken, storeToken } from "../auth";
 
 const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  
   const history = useHistory();
 
   return (
