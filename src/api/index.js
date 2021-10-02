@@ -5,3 +5,4 @@ export { default as loginUser } from "./loginUser";
 export { default as addPost } from "./addPost";
 export { default as getUser } from "./getUser";
 export { default as sendMessage } from "./sendMessage";
+export { default as deletePost } from "./deletePost";

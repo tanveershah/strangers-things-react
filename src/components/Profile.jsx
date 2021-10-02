@@ -18,7 +18,7 @@ const Profile = () => {
       <h1>Welcome {username}</h1>
       <h2>Your Posts:</h2>
       {posts && posts.length
-        ? posts.map((post) => <SinglePost post={post} />)
+        ? posts.map((post) => <SinglePost key={post._id} post={post} />)
         : null}
 
       <h2>Your Messages:</h2>
