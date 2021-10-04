@@ -25,7 +25,7 @@ const App = () => {
   useEffect(() => {
     const filteredPosts = posts.filter(
       (post) =>
-        post.title.includes(searchTerm) || post.description.includes(searchTerm)
+        post.title.includes(searchTerm) 
     );
     setFilteredPosts(filteredPosts);
   }, [searchTerm]);
@@ -64,7 +64,7 @@ const App = () => {
             <Login setIsLoggedIn={setIsLoggedIn} />
           </Route>
           <Route exact path="/posts/:postId">
-            <PostView posts={posts} setPosts={setPosts} title={setTitle} description={setDescription} price={price} setPrice={setPrice} />
+            <PostView posts={posts} setPosts={setPosts} title={title} setTitle={setTitle} description={description} setDescription={setDescription} price={price} setPrice={setPrice} />
           </Route>
           <Route path='/profile'>
             <Profile />

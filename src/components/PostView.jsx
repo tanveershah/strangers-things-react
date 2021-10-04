@@ -19,8 +19,13 @@ const PostView = ({
   const [content, setContent] = useState("");
 
   useEffect(async () => {
-    const { data } = await getUser(BASE_URL);
-    setUser(data);
+      try {
+          
+          const { data } = await getUser(BASE_URL);
+          setUser(data);
+      } catch (error) {
+          console.error(error.message)
+      }
   }, []);
 
   return (
@@ -59,31 +64,86 @@ const PostView = ({
             <button type="submit">Send</button>
           </form>
         </div>
-      ) : post && post.author._id === user._id ? <>
-      <h2>{post.title}</h2>
+      ) : post && post.author._id === user._id ? (
+        <>
+          <h2>{post.title}</h2>
           <p>{post.description}</p>
           <h4>{post.price}</h4>
-          <button onClick={event=>{
-              event.preventDefault()
-              deletePost(BASE_URL, postId)
-              history.push('/')
-          }}>Delete</button>
-          <form id='edit'
-          onSubmit={async event=>{
-              event.preventDefault()
-              try {
-                  const {data}=await editPost(BASE_URL, title, description, price, postId)
-                  setPosts([...posts, data.post])
-              } catch (error) {
-                  console.error(error.message)
-              } finally {
-                  history.push('/profile')
-              }
-          }}
+          <button
+            onClick={async(event) => {
+              event.preventDefault();
+              const {data}= await deletePost(BASE_URL, postId);
+              history.push("/");
+            }}
           >
-
+            Delete
+          </button>
+          <form
+            id="edit"
+            onSubmit={async (event) => {
+              event.preventDefault();
+              try {
+                const { data } = await editPost(
+                  BASE_URL,
+                  title,
+                  description,
+                  price,
+                  postId
+                );
+                setPosts([...posts, data.post]);
+              } catch (error) {
+                console.error(error.message);
+              } finally {
+                history.push("/profile");
+              }
+            }}
+          >
+            <fieldset>
+              <label htmlFor="title">Title</label>
+              <input
+                id="title"
+                type='text'
+                value={title}
+                placeholder={post.title}
+                onChange={(event) => setTitle(event.target.value)}
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label htmlFor="description">Description</label>
+              <input
+                id="description"
+                type='text'
+                value={description}
+                placeholder={post.description}
+                onChange={(event) => setDescription(event.target.value)}
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label htmlFor="price">Price</label>
+              <input
+                id="price"
+                type='text'
+                value={price}
+                placeholder={post.price}
+                onChange={(event) => setPrice(event.target.value)}
+                required
+              />
+            </fieldset>
+            <button type="submit">Edit</button>
           </form>
-      </>:null}
+        </>
+      ) : (
+        <>
+          {post?<> 
+          
+            <h2>{post.title}</h2>
+        <p>{post.description}</p>
+          </>:null
+        }
+        </>
+      )}
     </>
   );
 };
