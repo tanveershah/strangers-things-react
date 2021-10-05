@@ -9,7 +9,7 @@ const sendMessage = async (url, postId, content) => {
       `${url}/posts/${postId}/messages`,
       {
         message: {
-          content
+          content,
         },
       },
       {

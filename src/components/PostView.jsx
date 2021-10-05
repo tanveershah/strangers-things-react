@@ -19,13 +19,12 @@ const PostView = ({
   const [content, setContent] = useState("");
 
   useEffect(async () => {
-      try {
-          
-          const { data } = await getUser(BASE_URL);
-          setUser(data);
-      } catch (error) {
-          console.error(error.message)
-      }
+    try {
+      const { data } = await getUser(BASE_URL);
+      setUser(data);
+    } catch (error) {
+      console.error(error.message);
+    }
   }, []);
 
   return (
@@ -70,9 +69,9 @@ const PostView = ({
           <p>{post.description}</p>
           <h4>{post.price}</h4>
           <button
-            onClick={async(event) => {
+            onClick={async (event) => {
               event.preventDefault();
-              const {data}= await deletePost(BASE_URL, postId);
+              const { data } = await deletePost(BASE_URL, postId);
               history.push("/");
             }}
           >
@@ -102,7 +101,7 @@ const PostView = ({
               <label htmlFor="title">Title</label>
               <input
                 id="title"
-                type='text'
+                type="text"
                 value={title}
                 placeholder={post.title}
                 onChange={(event) => setTitle(event.target.value)}
@@ -113,7 +112,7 @@ const PostView = ({
               <label htmlFor="description">Description</label>
               <input
                 id="description"
-                type='text'
+                type="text"
                 value={description}
                 placeholder={post.description}
                 onChange={(event) => setDescription(event.target.value)}
@@ -124,7 +123,7 @@ const PostView = ({
               <label htmlFor="price">Price</label>
               <input
                 id="price"
-                type='text'
+                type="text"
                 value={price}
                 placeholder={post.price}
                 onChange={(event) => setPrice(event.target.value)}
@@ -136,12 +135,12 @@ const PostView = ({
         </>
       ) : (
         <>
-          {post?<> 
-          
-            <h2>{post.title}</h2>
-        <p>{post.description}</p>
-          </>:null
-        }
+          {post ? (
+            <>
+              <h2>{post.title}</h2>
+              <p>{post.description}</p>
+            </>
+          ) : null}
         </>
       )}
     </>

@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import { Header, Footer, Login, Profile, Posts, Register, Search, PostView, AddPost } from ".";
+import {
+  Header,
+  Footer,
+  Login,
+  Profile,
+  Posts,
+  Register,
+  Search,
+  PostView,
+  AddPost,
+} from ".";
 import { getPosts, BASE_URL } from "../api";
 import "./App.css";
 
@@ -23,9 +33,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const filteredPosts = posts.filter(
-      (post) =>
-        post.title.includes(searchTerm) 
+    const filteredPosts = posts.filter((post) =>
+      post.title.includes(searchTerm)
     );
     setFilteredPosts(filteredPosts);
   }, [searchTerm]);
@@ -35,7 +44,7 @@ const App = () => {
       <Header isLoggedIn={isLoggedIn} setIsloggedIn={setIsLoggedIn} />
       <div className="main">
         <Switch>
-        <Route exact path="/addPost">
+          <Route exact path="/addPost">
             <AddPost
               posts={posts}
               setPosts={setPosts}
@@ -64,9 +73,18 @@ const App = () => {
             <Login setIsLoggedIn={setIsLoggedIn} />
           </Route>
           <Route exact path="/posts/:postId">
-            <PostView posts={posts} setPosts={setPosts} title={title} setTitle={setTitle} description={description} setDescription={setDescription} price={price} setPrice={setPrice} />
+            <PostView
+              posts={posts}
+              setPosts={setPosts}
+              title={title}
+              setTitle={setTitle}
+              description={description}
+              setDescription={setDescription}
+              price={price}
+              setPrice={setPrice}
+            />
           </Route>
-          <Route path='/profile'>
+          <Route path="/profile">
             <Profile />
           </Route>
         </Switch>
